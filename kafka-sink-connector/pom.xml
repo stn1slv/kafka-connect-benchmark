@@ -7,7 +7,7 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.acme.kafka.connect</groupId>
+    <groupId>com.github.stn1slv.kafka.connect</groupId>
     <artifactId>kafka-connect-simple-sink</artifactId>
     <description>Kafka Connect Sink Connector for Sample</description>
     <version>0.2.0</version>
