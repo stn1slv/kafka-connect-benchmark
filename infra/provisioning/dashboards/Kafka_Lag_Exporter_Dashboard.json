@@ -15,8 +15,6 @@
     "editable": true,
     "gnetId": null,
     "graphTooltip": 0,
-    "id": 1,
-    "iteration": 1631867641101,
     "links": [],
     "panels": [
       {
@@ -240,6 +238,100 @@
         "dashLength": 10,
         "dashes": false,
         "datasource": null,
+        "fieldConfig": {
+          "defaults": {},
+          "overrides": []
+        },
+        "fill": 1,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 8,
+          "w": 24,
+          "x": 0,
+          "y": 11
+        },
+        "hiddenSeries": false,
+        "id": 105,
+        "legend": {
+          "avg": false,
+          "current": false,
+          "max": false,
+          "min": false,
+          "show": true,
+          "total": false,
+          "values": false
+        },
+        "lines": true,
+        "linewidth": 1,
+        "nullPointMode": "null",
+        "options": {
+          "alertThreshold": true
+        },
+        "percentage": false,
+        "pluginVersion": "7.5.9",
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "exemplar": true,
+            "expr": "avg(rate(kafka_consumergroup_group_lag[3m])) by (group, topic)",
+            "interval": "",
+            "legendFormat": "{{group}}",
+            "refId": "A"
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "Lag by  Consumer Group",
+        "tooltip": {
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": null,
         "description": "Extrapolated lag in seconds for each partition.",
         "fieldConfig": {
           "defaults": {},
@@ -251,7 +343,7 @@
           "h": 10,
           "w": 12,
           "x": 0,
-          "y": 11
+          "y": 19
         },
         "hiddenSeries": false,
         "id": 103,
@@ -350,7 +442,7 @@
           "h": 10,
           "w": 12,
           "x": 12,
-          "y": 11
+          "y": 19
         },
         "hiddenSeries": false,
         "id": 82,
@@ -433,7 +525,7 @@
         }
       }
     ],
-    "refresh": "10s",
+    "refresh": "5s",
     "schemaVersion": 27,
     "style": "dark",
     "tags": [],
