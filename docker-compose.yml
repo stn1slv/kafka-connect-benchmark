@@ -35,9 +35,6 @@ services:
       image: confluentinc/cp-kafka-connect:6.1.1
       hostname: connect
       container_name: connect
-      depends_on:
-        - zookeeper
-        - kafka
       ports:
         - 8083:8083
       environment:
