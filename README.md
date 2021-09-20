@@ -35,7 +35,7 @@ docker rm kafka zookeeper connect prometheus grafana kafka-lag-exporter
 Start the environment with the following command:
 
 ```bash
-docker-compose up
+docker-compose --profile all-in-one up
 ```
 
 Wait until all containers are up so you can start the testing.
@@ -61,3 +61,11 @@ curl --location --request POST 'http://localhost:8083/connectors' \
 #### Step 3 - Generate data to kafka topic
 
 Please use https://github.com/stn1slv/kafka-data-generator or your own data generator.
+
+#### Step 4 - View kafka consumer lag dashboard
+
+URL: http://localhost:3000/d/8LW1Yd8ik/kafka-lag-exporter?orgId=1&refresh=10s
+
+Username: admin
+
+Password: admin
