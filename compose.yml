@@ -1,0 +1,9 @@
+version: '3.9'
+
+# This files serves as filesystem anchor
+# Including it as first .yml file makes all build paths relative to this directory ('docker')
+#
+# Examples:
+#
+#   docker-compose -f compose.yml -f docker-compose up --remove-orphans
+#

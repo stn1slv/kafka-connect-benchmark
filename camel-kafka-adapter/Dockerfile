@@ -5,5 +5,7 @@ RUN mvn -DskipTests package && mv target/*.jar target/app.jar
 
 FROM adoptopenjdk:11-jre-hotspot
 COPY --from=app-builder /var/src/app/target/app.jar /opt
-ENV brokers=kafka:9092
-CMD ["java", "-jar", "/opt/app.jar", "--camel.component.kafka.brokers=${brokers}"]
+ENV BROKERS="kafka:9092"
+ENV JAVA_OPTS='-Xms2g -Xmx2g'
+CMD java ${JAVA_OPTS} -jar /opt/app.jar --camel.component.kafka.brokers=${BROKERS}
+# CMD ["java", "${JAVA_OPTS}","-jar", "/opt/app.jar", "--camel.component.kafka.brokers=${BROKERS}"]
