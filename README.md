@@ -1,8 +1,13 @@
-# Kafka Connect Sample Connector
+# Kafka Connect (simple) benchmark
 
-This repo contains a sample project that can be used to start off your own source connector for Kafka Connect.
+This repo contains:
+- simple sink connector based on Kafka Connect
+- simple sink connector based on Apache Camel with Spring Boot
+- infrastructure for testing (Kafka Broker, Prometheus, Grafana, Kafka Lag Exporter)
 
-## Building the connector
+## Starting
+
+### Building Kafka Connect connector
 
 The first thing you need to do to start using this connector is building it. In order to do that, you need to install the following dependencies:
 
@@ -15,17 +20,16 @@ After installing these dependencies, execute the following command:
 mvn clean package
 ```
 
-## Trying the connector
+### Start all components on the same host
 
 After building the connector you can try it by using the Docker-based installation from this repository.
 
-### 1 - Starting the environment
+#### Step 1 - Starting the environment
 
 Remove old containers:
 
 ```bash
-docker rm kafka zookeeper connect
-
+docker rm kafka zookeeper connect prometheus grafana kafka-lag-exporter
 ```
 
 Start the environment with the following command:
@@ -36,10 +40,24 @@ docker-compose up
 
 Wait until all containers are up so you can start the testing.
 
-### 2 - Install the connector
+#### Step 2 - Start the Kafka Connect connector
 
 Open a terminal to execute the following command:
 
 ```bash
-curl -X POST -H "Content-Type:application/json" -d @examples/basic-example.json http://localhost:8083/connectors
+curl --location --request POST 'http://localhost:8083/connectors' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "name": "basic-sink",
+    "config": {
+        "connector.class": "com.github.stn1slv.kafka.connect.sink.simple.SimpleSinkConnector",
+        "topics": "output",
+        "tasks.max": "1",
+        "value.converter": "org.apache.kafka.connect.storage.StringConverter",
+        "value.converter.schemas.enable": "true"
+    }
+}'
 ```
+#### Step 3 - Generate data to kafka topic
+
+Please use https://github.com/stn1slv/kafka-data-generator or your own data generator.
