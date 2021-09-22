@@ -17,6 +17,7 @@ The first thing you need to do to start using this connector is building it. In 
 After installing these dependencies, execute the following command:
 
 ```bash
+cd kafka-sink-connector
 mvn clean package
 ```
 
